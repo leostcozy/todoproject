@@ -1,3 +1,5 @@
+{% extends "todoapp/base.html" %} 
+{% block content %}
 <h2>タスクの追加</h2>
 <a href="{% url 'taskList' %}">戻る</a>
 
@@ -6,4 +8,6 @@
     {{form.as_p}}
     <input type="submit" value="追加">
 </form>
+
+{% endblock content %}
 
