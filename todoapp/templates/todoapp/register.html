@@ -1,0 +1,11 @@
+<h1>新規登録</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{form}}
+    <input type="submit" value="新規登録">
+</form>
+
+<p>既にアカウントを持っていますか？</p>
+<a href="{% url 'taskLogin' %}">ログイン</a>
+
