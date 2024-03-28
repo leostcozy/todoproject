@@ -1,16 +1,26 @@
-<h1>todoリスト</h1>
-<a href="{% url 'taskCreate' %}">タスクの追加</a>
-<table>
-    <tr>
-        <th>タスク</th>
-    </tr>
-    {% for task in tasks %}
+<div class="loginAndLogout">
+    {% if request.user.is_authenticated %} 
+        <form action="{% url 'taskLogout' %}" method="post">
+            {% csrf_token %} 
+            <input type="submit" value="ログアウト"/>
+        </form>
+    {% else %}
+        <a href="{% url 'taskLogin' %}">ログイン</a> 
+    {% endif %}
+</div>
+    <h1>todoリスト</h1>
+    <a href="{% url 'taskCreate' %}">タスクの追加</a>
+    <table>
         <tr>
-            <td>{{ task.title }}</td>
-            <td><a href="{% url 'task' task.id %}">確認</a></td>
-            <td><a href="{% url 'taskUpdate' task.id %}">編集</a></td>
-            <td><a href="{% url 'taskDelete' task.id %}">削除</a></td>
+            <th>タスク</th>
         </tr>
-    {% endfor %}
-</table>
+        {% for task in tasks %}
+            <tr>
+                <td>{{ task.title }}</td>
+                <td><a href="{% url 'task' task.id %}">確認</a></td>
+                <td><a href="{% url 'taskUpdate' task.id %}">編集</a></td>
+                <td><a href="{% url 'taskDelete' task.id %}">削除</a></td>
+            </tr>
+        {% endfor %}
+    </table>
 
